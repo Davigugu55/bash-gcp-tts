@@ -1,53 +1,53 @@
-# Bash TTS-GCP
+# Bash GCP-TTS
 
-## Descrição do Script
+## Script Description
 
-Este script Bash utiliza a API de Text-to-Speech do Google Cloud para converter um texto em áudio. O áudio resultante é salvo no formato `.wav` em um diretório chamado `Audios`.
+This Bash script uses the Google Cloud Text-to-Speech API to convert a text into audio. The resulting audio is saved in `.wav` format in a directory named `Audios`.
 
-Este script foi desenvolvido para facilitar a conversão de textos em áudio utilizando a API de Text-to-Speech do Google Cloud. Para mais informações, consulte a [documentação oficial](https://cloud.google.com/text-to-speech/docs).
+This script was developed to facilitate the conversion of text to audio using the Google Cloud Text-to-Speech API. For more information, refer to the [official documentation](https://cloud.google.com/text-to-speech/docs).
 
-## Pré-requisitos
+## Prerequisites
 
-1. **Google Cloud SDK**: Certifique-se de ter o Google Cloud SDK instalado e configurado em seu ambiente. Para instalar, siga as instruções oficiais: https://cloud.google.com/sdk/docs/install
+1. **Google Cloud SDK**: Ensure that you have the Google Cloud SDK installed and configured in your environment. To install, follow the official instructions: https://cloud.google.com/sdk/docs/install
 
-2. **Autenticação**: Faça login na sua conta do Google Cloud utilizando o comando `gcloud auth login`. Este comando abrirá uma página no seu navegador para que você insira suas credenciais do Google. Após o login, seu ambiente estará autenticado para usar os comandos do `gcloud`.
+2. **Authentication**: Log in to your Google Cloud account using the command `gcloud auth login`. This command will open a page in your browser where you can enter your Google credentials. After logging in, your environment will be authenticated to use `gcloud` commands.
 
-3. **Projeto Google Cloud**: Verifique se você está usando o projeto correto no Google Cloud. Você pode definir o projeto padrão usando o comando:
+3. **Google Cloud Project**: Make sure you are using the correct project in Google Cloud. You can set the default project using the command:
    ```
-   gcloud config set project [ID_DO_PROJETO]
+   gcloud config set project [PROJECT_ID]
    ```
-   Substitua `[ID_DO_PROJETO]` pelo ID do seu projeto no Google Cloud.
+   Replace `[PROJECT_ID]` with your Google Cloud project ID.
 
-## Uso
+## Usage
 
-Para executar o script, você deve fornecer um nome de arquivo como argumento. O script irá gerar um arquivo de áudio com este nome no formato `.wav`.
+To run the script, you need to provide a filename as an argument. The script will generate an audio file with this name in `.wav` format.
 
 ```bash
-./script.sh <NOME_DO_ARQUIVO>
+./script.sh <FILENAME>
 ```
 
-### Exemplo
+### Example
 
 ```bash
-./script.sh meu_audio
+./script.sh my_audio
 ```
 
-Este comando irá criar um arquivo chamado `meu_audio.wav` no diretório `Audios`.
+This command will create a file named `my_audio.wav` in the `Audios` directory.
 
-## Funcionamento do Script
+## Script Workflow
 
-1. **Verificação do Argumento**: O script verifica se um nome de arquivo foi fornecido como argumento. Se não for, ele exibe uma mensagem de uso e termina a execução.
+1. **Argument Check**: The script checks if a filename is provided as an argument. If not, it displays a usage message and exits.
 
-2. **Autenticação**: O script utiliza o comando `gcloud auth print-access-token` para obter um token de acesso, que é usado para autenticar a chamada à API de Text-to-Speech.
+2. **Authentication**: The script uses the `gcloud auth print-access-token` command to obtain an access token, which is used to authenticate the API call to the Text-to-Speech service.
 
-3. **Criação do Diretório**: O script verifica se o diretório `Audios` existe. Se não existir, ele o cria.
+3. **Directory Creation**: The script checks if the `Audios` directory exists. If it does not exist, the script creates it.
 
-4. **Chamada à API de Text-to-Speech**: O script faz uma solicitação `curl` para a API de Text-to-Speech do Google Cloud, passando os parâmetros de configuração de áudio e texto. O resultado da API é salvo em um arquivo `.txt` dentro do diretório `Audios`.
+4. **Text-to-Speech API Call**: The script makes a `curl` request to the Google Cloud Text-to-Speech API, passing the audio configuration and text parameters. The API response is saved in a `.txt` file within the `Audios` directory.
 
-5. **Processamento do Resultado**: O script processa o arquivo `.txt` para extrair o conteúdo de áudio codificado em base64, decodifica este conteúdo e salva como um arquivo `.wav` no mesmo diretório. Os arquivos temporários são removidos após o processamento.
+5. **Processing the Result**: The script processes the `.txt` file to extract the base64-encoded audio content, decodes this content, and saves it as a `.wav` file in the same directory. Temporary files are removed after processing.
 
-## Observações
+## Notes
 
-- Certifique-se de que o comando `gcloud` está disponível no seu `PATH`.
-- As permissões adequadas devem estar configuradas no seu projeto do Google Cloud para utilizar a API de Text-to-Speech.
-- O script está configurado para usar a voz `pt-BR-Wavenet-E`, mas você pode alterar essa configuração diretamente no script conforme necessário, assim como o texto a ser lido.
+- Ensure that the `gcloud` command is available in your `PATH`.
+- Appropriate permissions must be configured in your Google Cloud project to use the Text-to-Speech API.
+- The script is configured to use the voice `pt-BR-Wavenet-E`, but you can change this configuration directly in the script as needed. As well as the text to be read by TTS.
