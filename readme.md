@@ -23,13 +23,13 @@ This script was developed to facilitate the conversion of text to audio using th
 To run the script, you need to provide a filename as an argument. The script will generate an audio file with this name in `.wav` format.
 
 ```bash
-./script.sh <FILENAME>
+./script.sh -f <FILENAME> -t <TEXT>
 ```
 
 ### Example
 
 ```bash
-./script.sh my_audio
+./script.sh -f my_audio -t "Olá, não estamos disponíveis no momento."
 ```
 
 This command will create a file named `my_audio.wav` in the `Audios` directory.
