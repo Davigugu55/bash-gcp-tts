@@ -18,25 +18,30 @@ This script was developed to facilitate the conversion of text to audio using th
    ```
    Replace `[PROJECT_ID]` with your Google Cloud project ID.
 
+4. **Install jq Library**: Library responsible for transforming the data obtained through the arguments and the payload to send to the API.
+   ```bash
+   sudo apt-get install jq
+   ```
+
 ## Usage
 
 To run the script, you need to provide a filename as an argument. The script will generate an audio file with this name in `.wav` format.
 
 ```bash
-./script.sh <FILENAME>
+./script.sh -f <FILENAME> -t <TEXT>
 ```
 
 ### Example
 
 ```bash
-./script.sh my_audio
+./script.sh -f my_audio -t "Olá, não estamos disponíveis no momento."
 ```
 
 This command will create a file named `my_audio.wav` in the `Audios` directory.
 
 ## Script Workflow
 
-1. **Argument Check**: The script checks if a filename is provided as an argument. If not, it displays a usage message and exits.
+1. **Argument Check**: The script checks if a filename and text is provided as an argument. If not, it displays a usage message and exits.
 
 2. **Authentication**: The script uses the `gcloud auth print-access-token` command to obtain an access token, which is used to authenticate the API call to the Text-to-Speech service.
 
